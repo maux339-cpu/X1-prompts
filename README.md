@@ -2,6 +2,13 @@
 
 Repositorio organizado para estudo de prompts, guardrails e componentes ligados a seguranca digital ofensiva e defensiva.
 
+## Entrada Rapida
+
+- Home visual: `docs/HOME.md`
+- Leitura em portugues: `docs/versoes-em-portugues/README.md`
+- Cobertura tecnica: `docs/guias-em-portugues/revisao-de-cobertura.md`
+- Catalogo estrutural: `docs/indices/catalogo-cobertura-seguranca.json`
+
 ## Objetivo
 
 Este repositorio separa o material em blocos mais faceis de navegar:
@@ -33,7 +40,7 @@ Este repositorio separa o material em blocos mais faceis de navegar:
 
 ## Ordem recomendada
 
-1. `docs/guias-em-portugues/resumo-geral.md`
+1. `docs/HOME.md`
 2. `docs/versoes-em-portugues/README.md`
 3. `docs/versoes-em-portugues/prompts-publicos-explicados.md`
 4. `docs/versoes-em-portugues/src-zip-explicado.md`
@@ -46,6 +53,7 @@ Este repositorio separa o material em blocos mais faceis de navegar:
 
 ## Conteudo principal
 
+- `docs/HOME.md`
 - `docs/public-system-prompts/prompts-ciberseguranca.json`
 - `docs/guias-em-portugues/resumo-geral.md`
 - `docs/versoes-em-portugues/prompts-publicos-explicados.md`
