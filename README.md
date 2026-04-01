@@ -1,26 +1,39 @@
 # X1-prompts
 
-Repositorio organizado para estudo de prompts, guardrails e componentes relacionados a seguranca digital ofensiva e defensiva.
+Repositorio organizado para estudo de prompts, guardrails e componentes ligados a seguranca digital ofensiva e defensiva.
+
+## Objetivo
+
+Este repositorio separa o material em blocos mais faceis de navegar:
+
+- prompts publicos relevantes para ciberseguranca
+- analise do `src.zip` com foco em execucao, permissoes e risco
+- guias em portugues para leitura rapida
+- catalogo mestre em JSON para indexacao
 
 ## Estrutura
 
 - `docs/public-system-prompts`
-  Resumos e copias dos prompts publicos mais relevantes para ciberseguranca.
+  Copias e indice do material publico mais relevante.
 
 - `docs/src-zip-analise`
-  Analise separada do `src.zip` com foco em prompts, permissao, sandbox, review de seguranca, trust warnings e bypass de aprovacoes.
+  Analise do codigo extraido do `src.zip` e dos arquivos mais sensiveis.
 
-## Objetivo
+- `docs/guias-em-portugues`
+  Resumos em portugues por tema, sem reproduzir linha por linha os prompts.
 
-Separar, organizar e tornar navegavel:
+- `docs/indices`
+  Catalogo mestre em JSON com classificacao por funcao, tipo e risco.
 
-- prompts de seguranca defensiva
-- prompts ligados a execucao, shell e controle de permissoes
-- componentes de trust e bypass
-- material util para estudar agentes com capacidade ofensiva/defensiva
+## Ordem recomendada
+
+1. `docs/guias-em-portugues/resumo-geral.md`
+2. `docs/public-system-prompts/INDEX.md`
+3. `docs/src-zip-analise/README.md`
+4. `docs/indices/catalogo-mestre.json`
 
 ## Conteudo principal
 
 - `docs/public-system-prompts/prompts-ciberseguranca.json`
-- `docs/src-zip-analise/README.md`
-
+- `docs/guias-em-portugues/resumo-geral.md`
+- `docs/indices/catalogo-mestre.json`

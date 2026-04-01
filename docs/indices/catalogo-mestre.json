@@ -1,0 +1,143 @@
+{
+  "repositorio": "maux339-cpu/X1-prompts",
+  "idioma_documentacao": "pt-BR",
+  "fontes": [
+    {
+      "grupo": "public-system-prompts",
+      "base_path": "docs/public-system-prompts"
+    },
+    {
+      "grupo": "src-zip-analise",
+      "base_path": "docs/src-zip-analise/arquivos-relevantes"
+    }
+  ],
+  "itens": [
+    {
+      "arquivo": "docs/public-system-prompts/agent-prompt-security-monitor-for-autonomous-agent-actions-first-part.md",
+      "nome_curto": "Security Monitor Part 1",
+      "tipo": "prompt_publico",
+      "tema": "seguranca_defensiva",
+      "funcao": "classificacao inicial de risco para acoes autonomas",
+      "adaptacao_pentest": "detectar exfiltracao, tentativa de auto-modificacao, execucao externa e acao fora de escopo",
+      "risco_se_vazado": "facilita engenharia reversa das regras de bloqueio e caminhos de evasao"
+    },
+    {
+      "arquivo": "docs/public-system-prompts/agent-prompt-security-monitor-for-autonomous-agent-actions-second-part.md",
+      "nome_curto": "Security Monitor Part 2",
+      "tipo": "prompt_publico",
+      "tema": "seguranca_defensiva",
+      "funcao": "complemento da classificacao e resposta a acoes sensiveis",
+      "adaptacao_pentest": "aumentar triagem de cadeias de comando, contexto de rede e sinais de escalacao",
+      "risco_se_vazado": "permite testar ate encontrar combinacoes que passem no classificador"
+    },
+    {
+      "arquivo": "docs/public-system-prompts/agent-prompt-security-review-slash-command.md",
+      "nome_curto": "Security Review",
+      "tipo": "prompt_publico",
+      "tema": "seguranca_defensiva",
+      "funcao": "revisao de diff ou branch com foco em vulnerabilidade exploravel",
+      "adaptacao_pentest": "usar como revisor de codigo suspeito, malware em PR e mudancas com bypass de auth",
+      "risco_se_vazado": "explica criterios de deteccao e pode orientar code changes para fugir da revisao"
+    },
+    {
+      "arquivo": "docs/public-system-prompts/agent-prompt-bash-command-prefix-detection.md",
+      "nome_curto": "Bash Prefix Detection",
+      "tipo": "prompt_publico",
+      "tema": "execucao_permissoes",
+      "funcao": "identificar padroes de prefixo de comando que indicam risco ou injecao",
+      "adaptacao_pentest": "bloquear cadeias que tentam esconder eval, curl pipe shell ou wrappers evasivos",
+      "risco_se_vazado": "ajuda a calibrar payloads para evitar assinatura simples"
+    },
+    {
+      "arquivo": "docs/public-system-prompts/system-prompt-tool-execution-denied.md",
+      "nome_curto": "Tool Execution Denied",
+      "tipo": "prompt_publico",
+      "tema": "execucao_permissoes",
+      "funcao": "impedir contorno de negacao explicita de ferramenta",
+      "adaptacao_pentest": "forcar o agente a parar diante de bloqueio em vez de procurar caminhos alternativos inseguros",
+      "risco_se_vazado": "mostra quando a politica aceita parar e quando pode haver brecha de redirecionamento"
+    },
+    {
+      "arquivo": "docs/public-system-prompts/data-agent-sdk-reference-typescript.md",
+      "nome_curto": "SDK TS Permissions",
+      "tipo": "referencia_sdk",
+      "tema": "execucao_permissoes",
+      "funcao": "documentar modos de permissao e operacao do agente",
+      "adaptacao_pentest": "definir perfis de execucao seguros para laboratorio e perfis restritos para revisao",
+      "risco_se_vazado": "explicita modos perigosos como bypass sem aprovacao"
+    },
+    {
+      "arquivo": "docs/public-system-prompts/data-agent-sdk-reference-python.md",
+      "nome_curto": "SDK Python Permissions",
+      "tipo": "referencia_sdk",
+      "tema": "execucao_permissoes",
+      "funcao": "documentar modos de permissao e operacao do agente em Python",
+      "adaptacao_pentest": "traduzir as mesmas barreiras para pipelines e wrappers defensivos",
+      "risco_se_vazado": "reduz custo de entendimento para abuso de configuracoes arriscadas"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/security-review.ts",
+      "nome_curto": "security-review.ts",
+      "tipo": "prompt_codigo",
+      "tema": "seguranca_defensiva",
+      "funcao": "revisor de seguranca do pacote analisado",
+      "adaptacao_pentest": "usar para detectar classes de falha em repo malicioso, PR suspeito e codigo agente",
+      "risco_se_vazado": "permite contornar heuristicas e induzir falso negativo em revisao automatica"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/BashTool-prompt.ts",
+      "nome_curto": "BashTool prompt",
+      "tipo": "prompt_codigo",
+      "tema": "execucao_permissoes",
+      "funcao": "orientar uso seguro de shell e desincentivar destrutividade",
+      "adaptacao_pentest": "barrar exfiltracao por shell, curl pipe, bypass de hooks e cadeias de persistencia",
+      "risco_se_vazado": "se combinado com bypass de permissao, a superficie vira RCE operacional"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/PowerShellTool-prompt.ts",
+      "nome_curto": "PowerShellTool prompt",
+      "tipo": "prompt_codigo",
+      "tema": "execucao_permissoes",
+      "funcao": "orientar uso seguro de PowerShell com foco em quoting, confirmacao e limite de dano",
+      "adaptacao_pentest": "bloquear iex iwr, persistencia em profile, scheduled task e alteracao de defender",
+      "risco_se_vazado": "em ambiente sem sandbox pode abrir caminho para execucao remota ou persistencia"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/BypassPermissionsModeDialog.tsx",
+      "nome_curto": "Bypass Permissions Dialog",
+      "tipo": "componente_ux",
+      "tema": "trust_bypass",
+      "funcao": "avisar operador sobre risco de modo sem aprovacao",
+      "adaptacao_pentest": "marcar estados de laboratorio onde comandos perigosos so devem rodar em VM isolada",
+      "risco_se_vazado": "evidencia a existencia de um modo de alto risco que reduz friccao de abuso"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/PluginTrustWarning.tsx",
+      "nome_curto": "Plugin Trust Warning",
+      "tipo": "componente_ux",
+      "tema": "trust_bypass",
+      "funcao": "avisar que plugin, MCP e codigo externo ampliam a superficie de ataque",
+      "adaptacao_pentest": "destacar revisao de procedencia, assinatura e escopo de plugin antes da instalacao",
+      "risco_se_vazado": "mostra que plugins podem ser vetor privilegiado para abuso"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/RemoteTriggerTool-prompt.ts",
+      "nome_curto": "RemoteTriggerTool prompt",
+      "tipo": "prompt_codigo",
+      "tema": "trust_bypass",
+      "funcao": "orientar execucao remota sem expor token diretamente no shell",
+      "adaptacao_pentest": "reduzir vazamento de credencial em automacoes e hooks remotos",
+      "risco_se_vazado": "se o ambiente remoto for mal configurado, o canal ainda pode virar pivô de acesso"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/yoloClassifier.ts",
+      "nome_curto": "yoloClassifier.ts",
+      "tipo": "classificador_codigo",
+      "tema": "execucao_permissoes",
+      "funcao": "montar a decisao automatica de permissao e auto mode",
+      "adaptacao_pentest": "usar como base para um classificador que detecte injecao, exfiltracao, persistencia e comando de alto impacto",
+      "risco_se_vazado": "e o ponto mais sensivel; em ambiente sem sandbox ou com permissao ampla, falhas aqui elevam muito o risco operacional",
+      "observacao": "referencia templates .txt ausentes na amostra"
+    }
+  ]
+}
