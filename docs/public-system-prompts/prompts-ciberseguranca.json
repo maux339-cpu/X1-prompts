@@ -1,0 +1,55 @@
+{
+  "prompts": [
+    {
+      "tema": "Security Monitor",
+      "arquivos_relevantes": [
+        "agent-prompt-security-monitor-for-autonomous-agent-actions-first-part.md",
+        "agent-prompt-security-monitor-for-autonomous-agent-actions-second-part.md"
+      ],
+      "o_que_faz": "Funciona como um classificador de ações de um agente autônomo. A ideia central é deixar passar operações normais e bloquear só ações com risco real, como exfiltração, auto-modificação do próprio agente, execução de código vindo de fontes externas, mudanças destrutivas em infraestrutura compartilhada, enfraquecimento de controles de segurança e publicação indevida em sistemas externos. Também trata conteúdo de arquivos, web e saídas de ferramentas como possíveis fontes de manipulação, então a decisão não depende só da intenção aparente do agente.",
+      "adaptacao_pentest": "Para um agente de pentest, esse desenho serve como guarda de contenção. Dá para adaptar como uma camada que analisa cada comando, script ou subagente antes da execução, marcando padrões de prompt injection, tentativa de usar segredos fora do escopo, download e execução de tooling não confiável, pivot para serviços externos e alteração de arquivos de configuração que aumentem privilégios. Também é útil para revisão de repositório suspeito, porque permite tratar código gravado anteriormente como parte do risco quando ele for executado depois.",
+      "risco_real_se_vazado": "O risco não é tanto o texto em si, mas o mapeamento exato do que é bloqueado e do que vira exceção. Um atacante ganha um guia de evasão: pode quebrar operações em etapas, esconder intenção em wrappers, explorar lacunas de escopo e mirar ações fora das listas explícitas. Se esse monitor for a principal barreira entre o agente e shell, cloud ou credenciais, uma falha de cobertura pode virar execução destrutiva, exfiltração ou mudanças persistentes no ambiente."
+    },
+    {
+      "tema": "Bloqueio de comandos e injeção em shell",
+      "arquivos_relevantes": [
+        "agent-prompt-bash-command-prefix-detection.md",
+        "agent-prompt-security-monitor-for-autonomous-agent-actions-second-part.md"
+      ],
+      "o_que_faz": "Esse conjunto tenta separar um comando legítimo do seu prefixo permitido e detectar quando há injeção ou encadeamento malicioso escondido. Em paralelo, o monitor de segurança classifica certos padrões como proibidos, como execução de código obtido de fora, desserialização perigosa, acesso remoto com ssh ou exec em ambiente compartilhado e uso de modos que pulam aprovações.",
+      "adaptacao_pentest": "Para um agente de pentest, isso pode virar um filtro pré-execução focado em payloads encadeados, substituição de comandos, subshells, backticks, expansão com dados sensíveis e wrappers que montam comandos dinamicamente. Também pode bloquear automaticamente execuções do tipo eval, exec, pickle, yaml inseguro, curl pipe para shell e acesso remoto sem autorização explícita ao alvo certo. É especialmente útil para impedir que o próprio agente seja conduzido a virar ferramenta de pós-exploração fora do escopo.",
+      "risco_real_se_vazado": "Se o atacante souber exatamente como o detector decide o prefixo e o que considera injeção, ele pode formatar payloads para parecerem benignos na etapa de classificação e só depois acionar o efeito real. Se combinado com shell sem sandbox, credenciais disponíveis e modo autônomo, isso pode degenerar em RCE local, uso indevido de ssh, execução de código externo e exfiltração por linha de comando."
+    },
+    {
+      "tema": "Injeção via prompt e manipulação de contexto",
+      "arquivos_relevantes": [
+        "agent-prompt-security-monitor-for-autonomous-agent-actions-first-part.md",
+        "system-prompt-tool-execution-denied.md"
+      ],
+      "o_que_faz": "A lógica assume que arquivos, páginas web, resultados de busca, mensagens internas e saídas de ferramentas podem carregar instruções hostis. O prompt orienta o classificador a não tratar esses resultados como extensão confiável da intenção do usuário e a bloquear tentativas de burlar a própria classificação. O prompt de execução negada reforça que o agente não deve contornar um bloqueio com caminhos tortos ou usar outra ferramenta como substituta maliciosa.",
+      "adaptacao_pentest": "Num agente de pentest, isso é valioso para cenários de prompt injection em README, ticket, CI log, issue, página HTML ou script isca. A adaptação prática é marcar como não confiável todo conteúdo recuperado dinamicamente e exigir validação forte antes de usar nomes de alvo, URLs, credenciais, parâmetros destrutivos ou ações de publicação. Também ajuda na triagem de repositórios maliciosos que tentam induzir o agente a rodar bootstrap, hooks, payloads ou comandos de correção falsos.",
+      "risco_real_se_vazado": "Se esse padrão de defesa não existir ou puder ser previsto e contornado, basta plantar instruções dentro de artefatos que o agente já leria durante o trabalho. O resultado pode ser execução de comandos fora do objetivo, envio de dados para fora, alteração de política local e abuso de ferramentas aparentemente legítimas para produzir ações de alto impacto."
+    },
+    {
+      "tema": "Revisão de repositório ou diff malicioso",
+      "arquivos_relevantes": [
+        "agent-prompt-security-review-slash-command.md"
+      ],
+      "o_que_faz": "Esse prompt define um fluxo de revisão de segurança de mudanças em código com foco em vulnerabilidades exploráveis e pouco ruído. Ele concentra a análise em classes concretas de falhas como injeção, bypass de autenticação, desserialização insegura, exposição de dados e validação de certificados, e força uma etapa de redução de falso positivo antes do relatório final.",
+      "adaptacao_pentest": "Para um agente de pentest, dá para reaproveitar a estrutura como motor de triagem de repositório suspeito, pull request hostil ou pacote potencialmente trojanizado. Em vez de só revisar segurança de produto, ele pode procurar sinais de cadeia de suprimentos, loaders, inicialização remota, hooks de instalação, telemetria não declarada, sinks de comando e persistência. Também funciona bem para revisar código que o próprio agente pretende executar depois.",
+      "risco_real_se_vazado": "O vazamento desse prompt oferece menos risco direto que o monitor, mas ainda revela o que tende a ser considerado vulnerabilidade de alta confiança e o que costuma ser ignorado. Um invasor pode modelar alterações para escapar dessa heurística, distribuindo a lógica maliciosa entre arquivos, escondendo gatilhos em fluxo menos óbvio ou explorando áreas explicitamente tratadas como baixo sinal."
+    },
+    {
+      "tema": "Trust dialog bypass e auto-elevação",
+      "arquivos_relevantes": [
+        "agent-prompt-security-monitor-for-autonomous-agent-actions-second-part.md",
+        "data-agent-sdk-reference-typescript.md",
+        "data-agent-sdk-reference-python.md",
+        "system-prompt-tool-execution-denied.md"
+      ],
+      "o_que_faz": "Não há um prompt público dedicado só a trust dialog bypass nesse repositório, mas há duas peças relevantes. O monitor trata como proibido modificar arquivos de configuração do próprio agente ou arquivos de permissão para mudar comportamento, escopo ou privilégios. Já as referências do SDK mostram que existe um modo de operação que pula prompts de permissão quando ativado por opção explícita, o que ajuda a entender a superfície de risco do produto.",
+      "adaptacao_pentest": "Para um agente de pentest, a adaptação correta é simples: tratar qualquer mudança em settings, arquivos de política, fontes de configuração de projeto e mecanismos de aprovação como evento crítico. Também vale bloquear tentativas de alternar modo de permissão, importar configs de projeto não confiáveis ou escrever instruções persistentes que ampliem poder de execução em sessões futuras.",
+      "risco_real_se_vazado": "Esse é o ponto mais sensível. Se houver um bug de ordem de carregamento, parser ou confiança em configuração local, conhecer os nomes, caminhos e modos de permissão ajuda a construir bypass de aprovação. Em um agente com Bash, filesystem e rede, isso pode escalar para execução arbitrária sem prompt, leitura de segredos, alteração de políticas locais e persistência entre sessões."
+    }
+  ]
+}
