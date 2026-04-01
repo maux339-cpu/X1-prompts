@@ -138,6 +138,78 @@
       "adaptacao_pentest": "usar como base para um classificador que detecte injecao, exfiltracao, persistencia e comando de alto impacto",
       "risco_se_vazado": "e o ponto mais sensivel; em ambiente sem sandbox ou com permissao ampla, falhas aqui elevam muito o risco operacional",
       "observacao": "referencia templates .txt ausentes na amostra"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/WebFetchTool-prompt.ts",
+      "nome_curto": "WebFetchTool prompt",
+      "tipo": "prompt_codigo",
+      "tema": "web_injecao",
+      "funcao": "buscar conteudo web e processar resposta com limites de citaçao e dominio",
+      "adaptacao_pentest": "tratar paginas como entrada hostil, limitar reproducao e reduzir prompt injection via conteudo web",
+      "risco_se_vazado": "se combinado com politicas frouxas pode ampliar ingestao de conteudo hostil em contexto do agente"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/WebSearchTool-prompt.ts",
+      "nome_curto": "WebSearchTool prompt",
+      "tipo": "prompt_codigo",
+      "tema": "web_injecao",
+      "funcao": "orientar busca web com exigencia de fontes e uso do ano corrente",
+      "adaptacao_pentest": "forcar rastreabilidade de fonte e diminuir resposta sem evidencias em investigacao",
+      "risco_se_vazado": "explicita como a ferramenta deve citar fontes, o que pode orientar abuso de SEO ou de resultados manipulados"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/AgentTool-prompt.ts",
+      "nome_curto": "AgentTool prompt",
+      "tipo": "prompt_codigo",
+      "tema": "orquestracao_agentes",
+      "funcao": "coordenar subagentes e forks sem inventar resultados nem perder escopo",
+      "adaptacao_pentest": "delegar pesquisa, revisao e validacao isolando contexto e reduzindo contaminaçao entre tarefas",
+      "risco_se_vazado": "a orquestraçao errada pode multiplicar superficie de abuso e ocultar trilhas de decisao"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/ssrfGuard.ts",
+      "nome_curto": "ssrfGuard.ts",
+      "tipo": "defesa_tecnica",
+      "tema": "web_injecao",
+      "funcao": "bloquear resolucao para enderecos privados, link-local e metadata endpoints em hooks HTTP",
+      "adaptacao_pentest": "usar como defesa basica contra SSRF em execucoes remotas, hooks e conectores",
+      "risco_se_vazado": "se removido ou contornado, hooks HTTP podem virar ponte para rede interna e metadata"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/BashTool-bashSecurity.ts",
+      "nome_curto": "BashTool bashSecurity",
+      "tipo": "defesa_tecnica",
+      "tema": "execucao_permissoes",
+      "funcao": "detectar substituiçao de comando, expansao perigosa, tecnicas de evasao e construcoes destrutivas no shell",
+      "adaptacao_pentest": "bloquear payloads que tentam escapar de allowlists simples e esconder execucao real",
+      "risco_se_vazado": "falha aqui abre espaco para RCE operacional ou evasao de filtros"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/BashTool-readOnlyValidation.ts",
+      "nome_curto": "BashTool readOnlyValidation",
+      "tipo": "defesa_tecnica",
+      "tema": "execucao_permissoes",
+      "funcao": "determinar quando um comando de Bash pode ser tratado como somente leitura",
+      "adaptacao_pentest": "restringir comandos aparentemente inocentes que ainda permitam escrita, exfiltracao ou acesso remoto",
+      "risco_se_vazado": "erros na allowlist criam bypass silencioso para escrita ou coleta de dados"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/PowerShellTool-powershellSecurity.ts",
+      "nome_curto": "PowerShellTool powershellSecurity",
+      "tipo": "defesa_tecnica",
+      "tema": "execucao_permissoes",
+      "funcao": "detectar Invoke-Expression, comando dinamico, encoded command, nested PowerShell e download cradle",
+      "adaptacao_pentest": "barrar tecnicas classicas de malware e living off the land em PowerShell",
+      "risco_se_vazado": "sem esse bloqueio, o PowerShell vira canal muito forte para execucao, persistencia e evasao"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-relevantes/ampliados/PowerShellTool-readOnlyValidation.ts",
+      "nome_curto": "PowerShellTool readOnlyValidation",
+      "tipo": "defesa_tecnica",
+      "tema": "execucao_permissoes",
+      "funcao": "allowlist de cmdlets somente leitura e detecçao de vazamento por argumento em PowerShell",
+      "adaptacao_pentest": "impedir que comandos de leitura sejam usados para exfiltrar segredo ou invocar comportamento oculto",
+      "risco_se_vazado": "uma allowlist incompleta ou permissiva abre caminho para exfiltracao e execucao indireta"
     }
   ]
 }

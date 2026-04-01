@@ -43,3 +43,9 @@ Este bloco concentra o material publico mais util para estudar guardrails de age
 ## Observacao
 
 Os arquivos desta pasta preservam o material copiado para consulta. As explicacoes em portugues ficam em `../guias-em-portugues`.
+
+## Arquivos com resumo em portugues
+
+- `../guias-em-portugues/resumo-geral.md`
+- `../guias-em-portugues/fichas-de-arquivos.md`
+- `../guias-em-portugues/revisao-de-cobertura.md`

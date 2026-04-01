@@ -19,8 +19,11 @@ Este repositorio separa o material em blocos mais faceis de navegar:
 - `docs/src-zip-analise`
   Analise do codigo extraido do `src.zip` e dos arquivos mais sensiveis.
 
+- `docs/src-zip-analise/colecao-seguranca`
+  Colecao organizada por tema com os arquivos mais relevantes de shell, permissoes, trust e superficie de prompt.
+
 - `docs/guias-em-portugues`
-  Resumos em portugues por tema, sem reproduzir linha por linha os prompts.
+  Resumos em portugues por tema, por arquivo e por cobertura.
 
 - `docs/indices`
   Catalogo mestre em JSON com classificacao por funcao, tipo e risco.
@@ -28,12 +31,17 @@ Este repositorio separa o material em blocos mais faceis de navegar:
 ## Ordem recomendada
 
 1. `docs/guias-em-portugues/resumo-geral.md`
-2. `docs/public-system-prompts/INDEX.md`
-3. `docs/src-zip-analise/README.md`
-4. `docs/indices/catalogo-mestre.json`
+2. `docs/guias-em-portugues/fichas-de-arquivos.md`
+3. `docs/guias-em-portugues/revisao-de-cobertura.md`
+4. `docs/public-system-prompts/INDEX.md`
+5. `docs/src-zip-analise/README.md`
+6. `docs/indices/catalogo-mestre.json`
+7. `docs/src-zip-analise/colecao-seguranca`
 
 ## Conteudo principal
 
 - `docs/public-system-prompts/prompts-ciberseguranca.json`
 - `docs/guias-em-portugues/resumo-geral.md`
+- `docs/guias-em-portugues/fichas-de-arquivos.md`
+- `docs/guias-em-portugues/revisao-de-cobertura.md`
 - `docs/indices/catalogo-mestre.json`
