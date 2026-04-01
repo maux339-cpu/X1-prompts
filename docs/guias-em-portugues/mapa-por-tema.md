@@ -14,14 +14,18 @@ Esses arquivos priorizam bloqueio, deteccao e revisao de risco real.
 - `agent-prompt-bash-command-prefix-detection.md`
 - `BashTool-prompt.ts`
 - `BashTool-bashSecurity.ts`
+- `BashTool-bashPermissions.ts`
 - `BashTool-readOnlyValidation.ts`
 - `PowerShellTool-prompt.ts`
 - `PowerShellTool-powershellSecurity.ts`
+- `PowerShellTool-powershellPermissions.ts`
 - `PowerShellTool-readOnlyValidation.ts`
 - `system-prompt-tool-execution-denied.md`
 - `data-agent-sdk-reference-typescript.md`
 - `data-agent-sdk-reference-python.md`
 - `dangerousPatterns.ts`
+- `permissions-core.ts`
+- `permissionValidation.ts`
 - `yoloClassifier.ts`
 
 Aqui fica a camada mais sensivel para abuso operacional ou RCE indireto.
@@ -30,10 +34,13 @@ Aqui fica a camada mais sensivel para abuso operacional ou RCE indireto.
 
 - `BypassPermissionsModeDialog.tsx`
 - `PluginTrustWarning.tsx`
+- `TrustDialog.tsx`
 - `RemoteTriggerTool-prompt.ts`
 - `AgentTool-prompt.ts`
 - `ssrfGuard.ts`
 - `permissionExplainer.ts`
+- `remoteManagedSettings-securityCheck.tsx`
+- `remotePermissionBridge.ts`
 
 Esses arquivos deixam visivel o risco de plugins, automacao remota e execucao sem aprovacao humana.
 
@@ -41,6 +48,7 @@ Esses arquivos deixam visivel o risco de plugins, automacao remota e execucao se
 
 - `WebFetchTool-prompt.ts`
 - `WebSearchTool-prompt.ts`
+- `execPromptHook.ts`
 - `promptShellExecution.ts`
 
 Esses arquivos nao sao "prompt injection defense" em nome, mas sao a parte da superficie onde conteudo externo, web e comandos embutidos podem contaminar a execucao.

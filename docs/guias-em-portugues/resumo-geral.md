@@ -47,10 +47,16 @@
   Deixam claro que parte da defesa esta na definicao rigorosa de quais comandos continuam sendo tratados como somente leitura.
 
 - `WebFetchTool-prompt.ts`, `WebSearchTool-prompt.ts` e `AgentTool-prompt.ts`
-  Ampliam a superficie de risco por entrada externa, pesquisa web, citacao, orquestracao e contaminaçao de contexto entre agentes.
+  Ampliam a superficie de risco por entrada externa, pesquisa web, citacao, orquestracao e contaminacao de contexto entre agentes.
+
+- `permissions-core.ts`, `permissionExplainer.ts` e `permissionValidation.ts`
+  Tornam visivel a espinha dorsal da camada de permissao, explicacao de risco e validacao de regras.
 
 - `ssrfGuard.ts`
   Fecha um vetor especifico e importante: conexao HTTP a enderecos privados, link-local e metadata endpoints.
+
+- `execPromptHook.ts` e `promptShellExecution.ts`
+  Sao dois pontos de alto interesse para injecao: um executa hooks por prompt e o outro transforma texto aprovado em execucao de shell.
 
 ## Leitura de risco
 

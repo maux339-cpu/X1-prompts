@@ -28,9 +28,11 @@
         "BashTool-prompt.ts",
         "BashTool-bashSecurity.ts",
         "BashTool-bashPermissions.ts",
+        "BashTool-readOnlyValidation.ts",
         "PowerShellTool-prompt.ts",
         "PowerShellTool-powershellSecurity.ts",
-        "PowerShellTool-powershellPermissions.ts"
+        "PowerShellTool-powershellPermissions.ts",
+        "PowerShellTool-readOnlyValidation.ts"
       ]
     },
     {
@@ -76,7 +78,8 @@
         "AgentTool-prompt.ts",
         "WebFetchTool-prompt.ts",
         "WebSearchTool-prompt.ts",
-        "execPromptHook.ts"
+        "execPromptHook.ts",
+        "promptShellExecution.ts"
       ]
     }
   ],

@@ -16,6 +16,9 @@
 - `BashTool-bashPermissions.ts`
   Decide como comandos Bash entram no fluxo de permissao e como regras de allow, ask e deny sao aplicadas.
 
+- `BashTool-readOnlyValidation.ts`
+  Define o que ainda pode ser tratado como somente leitura em Bash sem abrir brecha de escrita ou exfiltracao.
+
 - `PowerShellTool-prompt.ts`
   Equivalente do Bash com foco em PowerShell e risco operacional em ambiente Windows.
 
@@ -24,6 +27,9 @@
 
 - `PowerShellTool-powershellPermissions.ts`
   Aplica o fluxo de permissao a comandos PowerShell e reforca restricoes de escrita, git interno e persistencia.
+
+- `PowerShellTool-readOnlyValidation.ts`
+  Faz a mesma classificacao para PowerShell, com foco em cmdlets que parecem inofensivos mas ainda podem alterar estado.
 
 ## 03. Permissoes
 
@@ -114,3 +120,6 @@
 
 - `execPromptHook.ts`
   Executa hooks baseados em prompt. Alto interesse para entender injecao, recursao e acoplamento de ferramenta com LLM.
+
+- `promptShellExecution.ts`
+  Faz a ponte entre texto e execucao de shell, por isso e um ponto sensivel para prompt injection com impacto real.
