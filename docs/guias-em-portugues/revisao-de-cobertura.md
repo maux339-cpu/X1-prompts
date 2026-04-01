@@ -1,64 +1,40 @@
-# Revisao de Cobertura
+# Revisao De Cobertura
 
-## O que foi revisado
+## O que foi revisto
 
-Foi feita uma nova varredura da extracao em `src_zip_extract2/src` procurando:
+Foi feita uma segunda passada focada em:
 
-- prompts com nome explicito
-- arquivos de permissao e bypass
-- validacoes de shell e PowerShell
-- defesa contra SSRF
-- pontos de trust, plugin e subagentes
+- prompts publicos copiados
+- prompts e builders no `src.zip`
+- shell guardrails
+- mecanismos de permissao
+- trust dialogs
+- hooks e superficie de prompt injection
 
-## O que estava faltando e foi adicionado
+## O que entrou nesta revisao
 
-- `WebFetchTool-prompt.ts`
-- `WebSearchTool-prompt.ts`
-- `AgentTool-prompt.ts`
-- `ssrfGuard.ts`
-- `BashTool-bashSecurity.ts`
-- `BashTool-readOnlyValidation.ts`
-- `PowerShellTool-powershellSecurity.ts`
-- `PowerShellTool-readOnlyValidation.ts`
+- colecao separada em `docs/src-zip-analise/colecao-seguranca`
+- novos arquivos de shell e permissao que nao estavam na primeira selecao
+- arquivos de trust e remoto
+- builders de prompt e hook de prompt
+- catalogo de cobertura em JSON
 
-Esses arquivos foram copiados para `docs/src-zip-analise/arquivos-relevantes/ampliados` e indexados no catalogo.
+## O que continua faltando na amostra original
 
-## Colecao ampliada encontrada no projeto
+- templates referenciados por `yoloClassifier.ts`
+  Esses arquivos `.txt` parecem ser o nucleo mais valioso da politica de classificacao e nao vieram no ZIP.
 
-Durante a revisao, tambem foi confirmada a existencia de uma colecao mais ampla em:
-
-- `docs/src-zip-analise/colecao-seguranca/01-core-review`
-- `docs/src-zip-analise/colecao-seguranca/02-shell-guardrails`
-- `docs/src-zip-analise/colecao-seguranca/03-permissoes`
-- `docs/src-zip-analise/colecao-seguranca/04-trust-remoto`
-- `docs/src-zip-analise/colecao-seguranca/05-superficie-de-prompt`
-
-Essa colecao fecha a maior parte da cobertura operacional da area de seguranca no `src.zip`, inclusive com arquivos alem dos prompts centrais, como `bashPermissions`, `powershellPermissions`, `bridgePermissionCallbacks`, `systemPrompt`, `prompts.ts` e `execPromptHook.ts`.
+- classificador Bash real
+  `bashClassifier.ts` veio como stub para build externa, o que indica ausencia da implementacao interna mais rica.
 
 ## Conclusao da revisao
 
-Para a area de seguranca digital ofensiva e defensiva, os principais blocos agora cobertos no repositorio sao:
+Para a area de seguranca ofensiva e defensiva, o repositorio agora cobre os blocos principais:
 
-- monitoramento de acao autonoma
-- revisao de seguranca de codigo
-- shell e PowerShell com guardrails
-- bypass de permissao
-- trust warning para plugins
-- subagentes e coordenacao
-- busca e fetch web com superficie de injecao
-- defesa contra SSRF
-- validacao de comandos somente leitura
+- monitoramento e revisao
+- shell guardrails
+- permissao e classificacao
+- trust, bypass e remoto
+- superficie de prompt e hooks
 
-## O que continua ausente
-
-O principal vazio permanece o mesmo:
-
-- `utils/permissions/yolo-classifier-prompts/auto_mode_system_prompt.txt`
-- `utils/permissions/yolo-classifier-prompts/permissions_external.txt`
-- `utils/permissions/yolo-classifier-prompts/permissions_anthropic.txt`
-
-Esses templates sao referenciados por `yoloClassifier.ts`, mas nao vieram no `src.zip`. Entao o repositorio cobre o contorno e a montagem do classificador, mas nao o texto-base integral desses prompts.
-
-## Julgamento final
-
-Para fins de estudo da nossa area de seguranca, nao ficou faltando nenhum prompt principal que estivesse realmente presente na amostra local. O que falta agora sao artefatos que a propria amostra nao trouxe, principalmente os templates `.txt` do `yoloClassifier`.
+Se ainda houver mais material sensivel fora daqui, a lacuna mais provavel esta nos artefatos internos que nao acompanharam a amostra, especialmente prompts-base de classificador e componentes internos ant-only.

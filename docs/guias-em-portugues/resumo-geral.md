@@ -40,8 +40,21 @@
 - `yoloClassifier.ts`
   Peca mais sensivel da extracao. Centraliza a montagem de decisao automatica de permissao, mas os templates-base nao vieram no ZIP.
 
+- `BashTool-bashSecurity.ts` e `PowerShellTool-powershellSecurity.ts`
+  Mostram com mais precisao tecnica como o sistema tenta identificar abuso em shell, inclusive tecnicas proximas de malware operacional.
+
+- `BashTool-readOnlyValidation.ts` e `PowerShellTool-readOnlyValidation.ts`
+  Deixam claro que parte da defesa esta na definicao rigorosa de quais comandos continuam sendo tratados como somente leitura.
+
+- `WebFetchTool-prompt.ts`, `WebSearchTool-prompt.ts` e `AgentTool-prompt.ts`
+  Ampliam a superficie de risco por entrada externa, pesquisa web, citacao, orquestracao e contaminaçao de contexto entre agentes.
+
+- `ssrfGuard.ts`
+  Fecha um vetor especifico e importante: conexao HTTP a enderecos privados, link-local e metadata endpoints.
+
 ## Leitura de risco
 
 - Defensivo forte: `Security Monitor`, `Security Review`, prompts de shell e validacoes de permissao.
 - Ofensivo-correlato: tudo que toca shell, bypass, plugin, bridge remota e auto mode.
 - Lacuna principal: templates `.txt` referenciados por `yoloClassifier.ts` ausentes na amostra.
+- Lacuna secundaria: `prompt injection` e `trust dialog bypass` nao apareceram como prompts publicos isolados; eles estao espalhados entre shell, web, trust, UX e permissoes.

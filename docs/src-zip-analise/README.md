@@ -36,29 +36,9 @@ Nao apareceram sinais fortes de malware obvio, dropper ou backdoor simples. O ri
 - `arquivos-relevantes/yoloClassifier.ts`
   Montador do classificador de permissoes e auto mode.
 
-## Arquivos adicionais relevantes
+## Colecao ampliada
 
-- `arquivos-relevantes/ampliados/WebFetchTool-prompt.ts`
-  Regras de fetch web com limites de citaçao e uso de dominio aprovado.
-
-- `arquivos-relevantes/ampliados/WebSearchTool-prompt.ts`
-  Busca web com exigencia de fontes e cuidado com ano corrente.
-
-- `arquivos-relevantes/ampliados/AgentTool-prompt.ts`
-  Prompt de subagentes e fork, importante para coordenacao segura e para nao inventar resultado.
-
-- `arquivos-relevantes/ampliados/ssrfGuard.ts`
-  Bloqueio de SSRF para hooks HTTP.
-
-- `arquivos-relevantes/ampliados/BashTool-bashSecurity.ts`
-- `arquivos-relevantes/ampliados/BashTool-readOnlyValidation.ts`
-- `arquivos-relevantes/ampliados/PowerShellTool-powershellSecurity.ts`
-- `arquivos-relevantes/ampliados/PowerShellTool-readOnlyValidation.ts`
-  Camada pratica de deteccao de execucao perigosa, evasao e comandos somente leitura.
-
-## Colecao organizada
-
-Para visualizacao mais completa, existe uma colecao separada por tema:
+Agora existe uma colecao separada por categoria em:
 
 - `colecao-seguranca/01-core-review`
 - `colecao-seguranca/02-shell-guardrails`
@@ -66,7 +46,20 @@ Para visualizacao mais completa, existe uma colecao separada por tema:
 - `colecao-seguranca/04-trust-remoto`
 - `colecao-seguranca/05-superficie-de-prompt`
 
-Essa colecao e a visao mais completa da area de seguranca dentro do repositorio.
+Ela inclui arquivos que faltavam na primeira selecao, como:
+
+- `BashTool-bashSecurity.ts`
+- `BashTool-bashPermissions.ts`
+- `PowerShellTool-powershellSecurity.ts`
+- `PowerShellTool-powershellPermissions.ts`
+- `permissions-core.ts`
+- `permissionExplainer.ts`
+- `ssrfGuard.ts`
+- `TrustDialog.tsx`
+- `remoteManagedSettings-securityCheck.tsx`
+- `WebFetchTool-prompt.ts`
+- `WebSearchTool-prompt.ts`
+- `execPromptHook.ts`
 
 ## Lacuna importante
 
@@ -78,6 +71,6 @@ O ZIP nao trouxe todos os templates-base do classificador. `yoloClassifier.ts` r
 2. Leia `BashTool-prompt.ts` e `PowerShellTool-prompt.ts`.
 3. Passe pelos avisos de trust e bypass.
 4. Feche em `yoloClassifier.ts`.
-5. Revise os arquivos em `arquivos-relevantes/ampliados`.
+5. Revise a `colecao-seguranca` por categoria.
 6. Consulte `../guias-em-portugues/revisao-de-cobertura.md`.
-7. Consulte `../indices/catalogo-mestre.json` para ver a classificacao consolidada.
+7. Consulte `../indices/catalogo-cobertura-seguranca.json` para ver a classificacao consolidada.

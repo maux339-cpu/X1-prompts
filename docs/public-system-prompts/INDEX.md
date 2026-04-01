@@ -44,6 +44,8 @@ Este bloco concentra o material publico mais util para estudar guardrails de age
 
 Os arquivos desta pasta preservam o material copiado para consulta. As explicacoes em portugues ficam em `../guias-em-portugues`.
 
+Dentro do escopo de seguranca pedido, a cobertura publica esta forte para `Security Monitor`, `Security Review`, bloqueio de comando e modos de permissao. Ja `prompt injection` e `trust dialog bypass` aparecem de forma indireta e distribuida, nao como um arquivo publico unico.
+
 ## Arquivos com resumo em portugues
 
 - `../guias-em-portugues/resumo-geral.md`

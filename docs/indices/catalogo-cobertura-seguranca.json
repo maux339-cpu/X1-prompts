@@ -1,0 +1,93 @@
+{
+  "repositorio": "maux339-cpu/X1-prompts",
+  "idioma": "pt-BR",
+  "colecoes": [
+    {
+      "nome": "public-system-prompts",
+      "path": "docs/public-system-prompts",
+      "foco": "prompts publicos e referencias de permissao"
+    },
+    {
+      "nome": "colecao-seguranca",
+      "path": "docs/src-zip-analise/colecao-seguranca",
+      "foco": "arquivos do src.zip separados por area de seguranca"
+    }
+  ],
+  "categorias": [
+    {
+      "nome": "core-review",
+      "path": "docs/src-zip-analise/colecao-seguranca/01-core-review",
+      "arquivos": [
+        "security-review.ts"
+      ]
+    },
+    {
+      "nome": "shell-guardrails",
+      "path": "docs/src-zip-analise/colecao-seguranca/02-shell-guardrails",
+      "arquivos": [
+        "BashTool-prompt.ts",
+        "BashTool-bashSecurity.ts",
+        "BashTool-bashPermissions.ts",
+        "PowerShellTool-prompt.ts",
+        "PowerShellTool-powershellSecurity.ts",
+        "PowerShellTool-powershellPermissions.ts"
+      ]
+    },
+    {
+      "nome": "permissoes",
+      "path": "docs/src-zip-analise/colecao-seguranca/03-permissoes",
+      "arquivos": [
+        "permissions-core.ts",
+        "permissionExplainer.ts",
+        "permissionsLoader.ts",
+        "permissionValidation.ts",
+        "permissions-command.tsx",
+        "bypassPermissionsKillswitch.ts",
+        "bashClassifier.ts",
+        "classifierDecision.ts",
+        "classifierShared.ts",
+        "shellRuleMatching.ts",
+        "filesystem.ts",
+        "dangerousPatterns.ts",
+        "ssrfGuard.ts"
+      ]
+    },
+    {
+      "nome": "trust-remoto",
+      "path": "docs/src-zip-analise/colecao-seguranca/04-trust-remoto",
+      "arquivos": [
+        "BypassPermissionsModeDialog.tsx",
+        "PluginTrustWarning.tsx",
+        "TrustDialog.tsx",
+        "remoteManagedSettings-securityCheck.tsx",
+        "RemoteTriggerTool-prompt.ts",
+        "remotePermissionBridge.ts",
+        "bridgePermissionCallbacks.ts",
+        "yoloClassifier.ts"
+      ]
+    },
+    {
+      "nome": "superficie-de-prompt",
+      "path": "docs/src-zip-analise/colecao-seguranca/05-superficie-de-prompt",
+      "arquivos": [
+        "systemPrompt.ts",
+        "systemPromptSections.ts",
+        "prompts.ts",
+        "AgentTool-prompt.ts",
+        "WebFetchTool-prompt.ts",
+        "WebSearchTool-prompt.ts",
+        "execPromptHook.ts"
+      ]
+    }
+  ],
+  "lacunas_confirmadas": [
+    {
+      "item": "yolo-classifier-prompts/*.txt",
+      "motivo": "referenciados por yoloClassifier.ts, mas ausentes no src.zip"
+    },
+    {
+      "item": "implementacao completa interna de bashClassifier",
+      "motivo": "o arquivo presente veio como stub para build externa"
+    }
+  ]
+}

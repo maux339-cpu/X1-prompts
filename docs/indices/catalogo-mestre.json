@@ -210,6 +210,51 @@
       "funcao": "allowlist de cmdlets somente leitura e detecçao de vazamento por argumento em PowerShell",
       "adaptacao_pentest": "impedir que comandos de leitura sejam usados para exfiltrar segredo ou invocar comportamento oculto",
       "risco_se_vazado": "uma allowlist incompleta ou permissiva abre caminho para exfiltracao e execucao indireta"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-ampliados/dangerousPatterns.ts",
+      "nome_curto": "dangerousPatterns.ts",
+      "tipo": "defesa_tecnica",
+      "tema": "execucao_permissoes",
+      "funcao": "listar prefixes e allow rules que viram execucao arbitraria via interpretadores, eval, exec e ssh",
+      "adaptacao_pentest": "remover regras amplas demais e bloquear allowlists que mascaram RCE",
+      "risco_se_vazado": "explicita exatamente quais padroes sao tratados como perigosos na montagem de permissao"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-ampliados/promptShellExecution.ts",
+      "nome_curto": "promptShellExecution.ts",
+      "tipo": "superficie_execucao",
+      "tema": "prompt_injection",
+      "funcao": "executar shell embutido em prompt apenas depois de checagem de permissao",
+      "adaptacao_pentest": "tratar comandos embutidos em markdown ou slash command como entrada hostil e exigir validaçao forte",
+      "risco_se_vazado": "falha aqui pode transformar texto de prompt em execucao real"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/arquivos-ampliados/permissionExplainer.ts",
+      "nome_curto": "permissionExplainer.ts",
+      "tipo": "controle_auxiliar",
+      "tema": "execucao_permissoes",
+      "funcao": "gerar explicaçao de risco, motivo e impacto para pedidos de permissao",
+      "adaptacao_pentest": "melhorar UX de aprovaçao para analistas sem reduzir o rigor tecnico",
+      "risco_se_vazado": "baixo risco direto, mas ajuda a mapear como o sistema comunica perigo ao operador"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/colecao-seguranca/05-superficie-de-prompt/prompts.ts",
+      "nome_curto": "prompts.ts",
+      "tipo": "montagem_prompt",
+      "tema": "prompt_injection",
+      "funcao": "conter lembrete explicito para suspeitar de prompt injection em resultado de ferramenta",
+      "adaptacao_pentest": "tratar saida de ferramenta e conteudo externo como entrada nao confiavel antes de continuar a execucao",
+      "risco_se_vazado": "baixo risco direto; o valor principal e mostrar o ponto exato onde o sistema reforca essa cautela"
+    },
+    {
+      "arquivo": "docs/src-zip-analise/colecao-seguranca/04-trust-remoto/TrustDialog.tsx",
+      "nome_curto": "TrustDialog.tsx",
+      "tipo": "componente_ux",
+      "tema": "trust_bypass",
+      "funcao": "fluxo de confirmaçao sobre confiar ou nao no diretório atual",
+      "adaptacao_pentest": "usar o mesmo padrao para reduzir execucao cega em repositório desconhecido",
+      "risco_se_vazado": "mostra a existencia de uma camada de trust inicial, mas nao representa por si so um bypass"
     }
   ]
 }
